@@ -1,11 +1,14 @@
-<div class="search-container">
-  <div class="icon-container ion-justify-content-center ion-align-items-center">
-    <ion-icon name="search-outline"></ion-icon>
+
+<div class="p-3 shadow">
+  <div class="search-container m-2 rounded-xl ">
+    <div class="icon-container ion-justify-content-center ion-align-items-center">
+      <ion-icon name="search-outline"></ion-icon>
+    </div>
+    <input
+      type="text"
+      placeholder="Search Cities.."
+      (focus)="showSearchModal()"
+      [(ngModel)]="field"
+    />
   </div>
-  <input
-    type="text"
-    placeholder="Search Cities.."
-    (focus)="showSearchModal()"
-    [(ngModel)]="field"
-  />
 </div>

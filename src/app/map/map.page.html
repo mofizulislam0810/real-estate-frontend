@@ -1,39 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Map Page</ion-title>
     <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
   <ion-grid class="h-full min-h-full">
     <ion-row class="h-full min-h-full">
-      <ion-col size="12" class="z-10 relative flex min-h-[700px] h-[70%] lg:h-full">
-        <section class="w-full h-full relative">
-          <app-map-search-field
-            (selectedLocation)="mapLeaflet.setMapCenter($event)"
-          ></app-map-search-field>
-          <app-map-leaflet
-            #mapLeaflet
-            [visibleMarkerType]="visibleType"
-          ></app-map-leaflet>
-          <app-map-markers-legend
-            (toggledMarker)="setVisibleMarkerType($event)"
-          ></app-map-markers-legend>
+     
+      <div>
+        <section class="relative w-full h-full">
+          <img
+            src="../assets/images/banner/banner.jpg"
+            class="w-full h-auto"
+            alt="logo"
+          />
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2">
+            <app-map-search-field (selectedLocation)="mapLeaflet.setMapCenter($event)"></app-map-search-field>
+          </div>
         </section>
-
-        <!-- Side section for vertical property list -->
-        <div class="hidden lg:block w-[400px] overflow-y-auto">
-          <app-properties-list
+      </div>
+      <div class="hidden lg:block max-w-[400px] overflow-y-auto grid grid-cols-2">
+        <app-properties-list
             class="properties-list"
             [singleCol]="true"
             [limit]="10"
-          ></app-properties-list>
-        </div>
-      </ion-col>
-
+        ></app-properties-list>
+    </div>
       <ion-col size="12" class="ion-hide-lg-up">
         <div class="w-full mb-[60px]">
           <app-properties-list [horizontalSlide]="true"></app-properties-list>

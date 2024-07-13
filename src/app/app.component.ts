@@ -142,4 +142,10 @@ export class AppComponent implements OnInit {
   private isUnread(enquiry: Enquiry) {
     return !enquiry.read && enquiry.users.to.user_id === this.user.user_id;
   }
+  show: boolean = false;
+
+  toggleFade() {
+     console.log("first")
+      this.show = !this.show;
+  }
 }

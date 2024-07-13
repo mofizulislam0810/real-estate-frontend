@@ -1,79 +1,110 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu class="max-w-400 border-r-[1px] border-r-gray-500" contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>
-            <div class="logo-container">
-              <img src="../assets/images/logo.png" alt="logo"  routerLink = "/" />
-              <div class="logo-title">
-                <a href="https://github.com/eevan7a9/real-estate-management">
-                  Real Estate Management
-                </a>
-              </div>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        <div class="flex justify-between items-center">
+          <img
+            src="../assets/images/logo.png"
+            class="w-40 h-10"
+            alt="logo"
+            routerLink="/"
+          />
+
+          <div class="flex flex-wrap space-x-2 items-center hidden lg:block">
+            <ng-container *ngFor="let p of appPages; let i = index">
+              <a
+                [routerLink]="[p.url]"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                routerDirection="root"
+                routerLinkActive="selected"
+              >
+                <span>{{ p.title || "Menu Item" }}</span>
+                <span
+                  *ngIf="p.title === 'Enquiries' && unreadEnquiries"
+                  class="ml-2"
+                >
+                  {{ unreadEnquiries }}
+                </span>
+              </a>
+            </ng-container>
+
+            <ng-container *ngFor="let p of appLowerPages; let i = index">
+              <a
+                [routerLink]="[p.url]"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                routerDirection="root"
+                routerLinkActive="selected"
+                [hidden]="isHidden(p)"
+              >
+                <span>{{ p.title || "Menu Item" }}</span>
+              </a>
+            </ng-container>
+
+            <div *ngIf="user">
+              <button
+                (click)="signOut()"
+                class="px-2 py-2 rounded bg-red-500 text-white text-base shadow"
+              >
+                Sign Out
+              </button>
             </div>
-          </ion-list-header>
-          <!-- <ion-note></ion-note> -->
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of appPages; let i = index"
-          >
-            <ion-item
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              routerLinkActive="selected"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-label>{{ p.title || "Menu Item" }}</ion-label>
-              <!-- badge counter for unread messages -->
-              <ion-badge slot="end" *ngIf="p.title === 'Enquiries' && unreadEnquiries">
-                {{ unreadEnquiries }}
-              </ion-badge>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+          </div>
+          <button type="button" class="block lg:hidden" (click)="toggleFade()">
+            <i class="fa-solid fa-equals"></i>
+          </button>
+        </div>
 
-        <ion-list id="labels-list">
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of appLowerPages; let i = index"
-            [hidden]="isHidden(p)"
-          >
-            <ion-item
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              routerLinkActive="selected"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
-              <ion-label>{{ p.title || "Menu Item" }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+        <div *ngIf="show" class="flex flex-col items-center block lg:hidden">
+          <div class="flex flex-col space-y-4 items-center py-3">
+            <!-- Loop through appPages for main menu items -->
+            <ng-container *ngFor="let p of appPages; let i = index">
+              <a
+                [routerLink]="[p.url]"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                routerDirection="root"
+                routerLinkActive="selected"
+              >
+                <span>{{ p.title || "Menu Item" }}</span>
+                <span
+                  *ngIf="p.title === 'Enquiries' && unreadEnquiries"
+                  class="ml-2"
+                >
+                  {{ unreadEnquiries }}
+                </span>
+              </a>
+            </ng-container>
 
-          <ion-menu-toggle auto-hide="false" [hidden]="!user">
-            <ion-item button (click)="signOut()" lines="none" bu detail="false">
-              <ion-icon
-                slot="start"
-                [ios]="'log-out' + '-outline'"
-                [md]="'log-out' + '-sharp'"
-              ></ion-icon>
-              <ion-label>Sign Out</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
+            <!-- Loop through appLowerPages for additional menu items -->
+            <ng-container *ngFor="let p of appLowerPages; let i = index">
+              <a
+                [routerLink]="[p.url]"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                routerDirection="root"
+                routerLinkActive="selected"
+                [hidden]="isHidden(p)"
+              >
+                <span>{{ p.title || "Menu Item" }}</span>
+              </a>
+            </ng-container>
+
+            <!-- Display sign out button if user is logged in -->
+            <div *ngIf="user">
+              <button
+                (click)="signOut()"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-split-pane contentId="main-content">
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
