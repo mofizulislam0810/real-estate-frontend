@@ -14,7 +14,7 @@
             <ng-container *ngFor="let p of appPages; let i = index">
               <a
                 [routerLink]="[p.url]"
-                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-sm font-bold"
                 routerDirection="root"
                 routerLinkActive="selected"
               >
@@ -31,7 +31,7 @@
             <ng-container *ngFor="let p of appLowerPages; let i = index">
               <a
                 [routerLink]="[p.url]"
-                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-sm font-bold"
                 routerDirection="root"
                 routerLinkActive="selected"
                 [hidden]="isHidden(p)"
@@ -43,7 +43,7 @@
             <div *ngIf="user">
               <button
                 (click)="signOut()"
-                class="px-2 py-2 rounded bg-red-500 text-white text-base shadow"
+                class="px-2 py-2 rounded bg-red-500 text-white text-sm font-bold"
               >
                 Sign Out
               </button>
@@ -60,7 +60,7 @@
             <ng-container *ngFor="let p of appPages; let i = index">
               <a
                 [routerLink]="[p.url]"
-                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-sm font-bold"
                 routerDirection="root"
                 routerLinkActive="selected"
               >
@@ -78,7 +78,7 @@
             <ng-container *ngFor="let p of appLowerPages; let i = index">
               <a
                 [routerLink]="[p.url]"
-                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-sm font-bold bg-primary"
                 routerDirection="root"
                 routerLinkActive="selected"
                 [hidden]="isHidden(p)"
@@ -91,7 +91,7 @@
             <div *ngIf="user">
               <button
                 (click)="signOut()"
-                class="px-2 py-2 hover:bg-gray-100 rounded text-base shadow"
+                class="px-2 py-2 hover:bg-gray-100 rounded text-sm font-bold"
               >
                 Sign Out
               </button>

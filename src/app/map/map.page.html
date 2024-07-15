@@ -1,44 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="end">
-    </ion-buttons>
+    <ion-buttons slot="end"> </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content>
-  <ion-grid class="h-full min-h-full">
-    <ion-row class="h-full min-h-full">
-     
+  <ion-grid>
+    <ion-row>
       <div>
-        <section class="relative w-full h-full">
+        <section class="relative w-full">
           <img
             src="../assets/images/banner/banner.jpg"
             class="w-full h-auto"
             alt="logo"
           />
-          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2">
-            <app-map-search-field (selectedLocation)="mapLeaflet.setMapCenter($event)"></app-map-search-field>
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+          >
+            <app-map-search-field
+              (selectedLocation)="mapLeaflet.setMapCenter($event)"
+            ></app-map-search-field>
           </div>
         </section>
       </div>
-      <div class="hidden lg:block max-w-[400px] overflow-y-auto grid grid-cols-2">
+      <!-- <div class="hidden lg:block max-w-[400px] overflow-y-auto grid grid-cols-2">
         <app-properties-list
             class="properties-list"
             [singleCol]="true"
             [limit]="10"
         ></app-properties-list>
-    </div>
-      <ion-col size="12" class="ion-hide-lg-up">
-        <div class="w-full mb-[60px]">
-          <app-properties-list [horizontalSlide]="true"></app-properties-list>
-        </div>
-      </ion-col>
+    </div> -->
 
       <ion-col size="12" class="ion-no-padding ion-hide-lg-up">
-        <app-footer></app-footer>
+
       </ion-col>
     </ion-row>
   </ion-grid>
+  <app-properties-list [horizontalSlide]="false"></app-properties-list>
+  <app-footer></app-footer>
 </ion-content>
